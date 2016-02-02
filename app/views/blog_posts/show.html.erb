@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog_post.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog_post.user.username %>
+</p>
+
+<p>
+  <strong>Blog entry:</strong>
+  <%= @blog_post.blog_entry %>
+</p>
+
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', blog_posts_path %>
+
+  <%= render 'comments/form' %>
+
+<div class="panel panel-default">
+	<div class="panel-header">
+		<h4>Comments</h4>
+	</div>
+	<% @blog_post.comments.each do |comment| %>
+		<div class="panel-body">
+			<p><strong><%= comment.user.username %></strong> said:</p>
+			<p><%= comment.comment_entry %></p>
+			<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+			
+		</div>
+	<%end%>
+</div>
